@@ -1,0 +1,10 @@
+1- il faut etablir une connexion entre le code et le systeme d'exploitation
+La Connexion au Serveur Graphique
+
+Sous Linux, l'affichage est géré par un logiciel appelé serveur X11. 
+La fonction mlx_init() est celle qui demande au système : "Peux-tu me donner l'autorisation d'utiliser l'écran ?"
+
+mlx_init permet d'avoir l'accees a l'ecran
+mlx_new_image permet d'avoir une image dans la ram
+mlx_get_data_addr permet d'avoir l'addresse de cette image
+mlx_new_window permet d'avoir une fenetre
