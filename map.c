@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/29 17:27:51 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/30 14:14:08 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ void	ft_print_map(t_map *map)
 		printf("%s\n", map->map[a]);
 		a++;
 	}
+}
+
+void	ft_print_map_2(char **map)
+{
+	int a;
+
+	a = 0;
+	while(map[a])
+	{
+		printf("%s\n", map[a]);
+		a++;
+	}
+	printf("\n");
 }
 
 int	main(void)
@@ -42,6 +55,10 @@ int	main(void)
 	//printf("je suis ici\n");
 	ft_test_elements(map);
 	ft_print_map(map);
+	char **map_2 = copy_map(map);
+	ft_print_map_2(map_2);
+	flood_fill(1, 1, map_2); // il me faut une fonction qui trouve la position de spawn
+	ft_print_map_2(map_2);
 	ft_free_map(map);
 	return (0);
 }

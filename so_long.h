@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/29 17:59:35 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/30 14:03:30 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ void	ft_test_walls(t_map *map);
 void	ft_test_elements(t_map *map);
 void	ft_count_elements(t_map *map, int *nb_c, int *nb_e, int *nb_p);
 int	ft_test_forbidden_elements(t_map *map);
+char	**copy_map(t_map *map);
+void	ft_print_map_2(char **map);
+void	flood_fill(int pos_p_x, int pos_p_y, char **map);
 
 #endif

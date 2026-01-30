@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+         #
+#    By: anis <anis@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/27 14:17:07 by adjelili          #+#    #+#              #
-#    Updated: 2026/01/29 14:37:52 by adjelili         ###   ########.fr        #
+#    Updated: 2026/01/30 13:51:05 by anis             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 
 MINI_LIB_PATH = minilibx_linux
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 GET_NEXT_LINE_PATH = get_next_line
 SRC = main.c \
       main2.c \
@@ -22,7 +22,8 @@ SRC = main.c \
 	  utils.c \
 	  parse.c \
 	  $(GET_NEXT_LINE_PATH)/get_next_line.c \
-	  $(GET_NEXT_LINE_PATH)/get_next_line_utils.c
+	  $(GET_NEXT_LINE_PATH)/get_next_line_utils.c \
+	  paths.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
