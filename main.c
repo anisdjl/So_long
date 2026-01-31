@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 14:47:31 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/28 11:31:17 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/01/31 15:54:08 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,34 @@
 // 	*(unsigned int*)dst = color;
 // }
 
-// int main(void)
-// {
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	// t_data img;
-// 	// int y;
-// 	// int x;
-// 	void	*img_pointer;
-// 	int pic_height;
-// 	int pic_width;
+//int main(void)
+//{
+	// void	*mlx;
+	// void	*mlx_win;
+	// t_data img;
+	// int y;
+	// int x;
+	// void	*img_pointer;
+	// int pic_height;
+	// int pic_width;
 
-// 	mlx = mlx_init(); // cree une fenetre ?
-// 	//img.img = mlx_new_image(mlx, 1920, 1080);
-// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long"); // envoie un pointeur sur la fenetre qu'on ivent de creer
-// 	img_pointer = mlx_xpm_file_to_image(mlx, "./wp4507677-mr-robot-wallpapers.jpg", &pic_width, &pic_height);
-// 	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixels, &img.line_length, &img.endian);
-// 	// x = 480;
-// 	// while (x < 480 * 2)
-// 	// {
-// 	// 	y = 1080 / 4;
-// 	// 	while (y < (1080 / 4) * 2)
-// 	// 	{
-// 	// 		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
-// 	// 		y++;
-// 	// 	}
-// 	// 	x++;
-// 	// }
+	// mlx = mlx_init(); // cree une fenetre ?
+	//img.img = mlx_new_image(mlx, 1920, 1080);
+	// mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long"); // envoie un pointeur sur la fenetre qu'on ivent de creer
+	// img_pointer = mlx_xpm_file_to_image(mlx, "./wp4507677-mr-robot-wallpapers.jpg", &pic_width, &pic_height);
+	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixels, &img.line_length, &img.endian);
+	// x = 480;
+	// while (x < 480 * 2)
+	// {
+	// 	y = 1080 / 4;
+	// 	while (y < (1080 / 4) * 2)
+	// 	{
+	// 		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+	// 		y++;
+	// 	}
+	// 	x++;
+	// }
+//}
 	
 // 	mlx_put_image_to_window(mlx, mlx_win, img_pointer, 0, 0);
 // 	mlx_loop(mlx);

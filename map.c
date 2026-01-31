@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/30 14:14:08 by anis             ###   ########.fr       */
+/*   Updated: 2026/01/31 17:48:02 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ int	main(void)
 	ft_test_walls(map);
 	//printf("je suis ici\n");
 	ft_test_elements(map);
-	ft_print_map(map);
 	char **map_2 = copy_map(map);
-	ft_print_map_2(map_2);
-	flood_fill(1, 1, map_2); // il me faut une fonction qui trouve la position de spawn
-	ft_print_map_2(map_2);
+	find_pos_of_spawn_exit(map);
+	flood_fill(map->spawn_x, map->spawn_y, map_2); // il me faut une fonction qui trouve la position de spawn
+	ft_check_valid_path(map, map_2);
 	ft_free_map(map);
 	return (0);
 }
