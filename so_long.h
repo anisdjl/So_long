@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/31 17:03:33 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/01 13:01:48 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct map
 	int		spawn_y;
 	int		exit_x;
 	int		exit_y;
+	int		nb_c;
 }	t_map;
 
 void	ft_free_tab(char ***tab);
@@ -59,7 +60,7 @@ int		side_walls(t_map *map);
 int		top_down_walls(t_map *map);
 void	ft_test_walls(t_map *map);
 void	ft_test_elements(t_map *map);
-void	ft_count_elements(t_map *map, int *nb_c, int *nb_e, int *nb_p);
+void	ft_count_elements(t_map *map, int *nb_e, int *nb_p);
 int		ft_test_forbidden_elements(t_map *map);
 char	**copy_map(t_map *map);
 void	ft_print_map_2(char **map);

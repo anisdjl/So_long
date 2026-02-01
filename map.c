@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/31 17:48:02 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/01 13:09:24 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ int	main(void)
 	ft_test_elements(map);
 	char **map_2 = copy_map(map);
 	find_pos_of_spawn_exit(map);
-	flood_fill(map->spawn_x, map->spawn_y, map_2); // il me faut une fonction qui trouve la position de spawn
+	flood_fill(map->spawn_x, map->spawn_y, map_2);
 	ft_check_valid_path(map, map_2);
+	ft_free_tab(&map_2);
 	ft_free_map(map);
 	return (0);
 }

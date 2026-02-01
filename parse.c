@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 14:24:29 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/30 13:44:46 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/01 13:04:11 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_test_length_line(t_map *map)
 		if (ft_strlen(map->map[y]) != length)
 		{
 			ft_free_map(map);
-			printf("invalid map");
+			printf("invalid map\n");
 			exit(EXIT_FAILURE);
 		}
 		y++;
@@ -118,13 +118,13 @@ void	ft_test_walls(t_map *map)
 	if (!top_down_walls(map))
 	{
 		ft_free_map(map);
-		printf("invalid map");
+		printf("invalid map\n");
 		exit(EXIT_FAILURE);
 	}
 	if (!side_walls(map))
 	{
 		ft_free_map(map);
-		printf("invalid map");
+		printf("invalid map\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -164,7 +164,7 @@ int	side_walls(t_map *map)
 	return (1);
 }
 
-void	ft_count_elements(t_map *map, int *nb_c, int *nb_e, int *nb_p)
+void	ft_count_elements(t_map *map, int *nb_e, int *nb_p)
 {
 	int	i;
 	int	a;
@@ -176,7 +176,7 @@ void	ft_count_elements(t_map *map, int *nb_c, int *nb_e, int *nb_p)
 		while (map->map[i][a])
 		{
 			if (map->map[i][a] == 'C')
-				(*nb_c)++;
+				map->nb_c++;
 			else if (map->map[i][a] == 'P')
 				(*nb_p)++;
 			else if (map->map[i][a] == 'E')
@@ -189,24 +189,23 @@ void	ft_count_elements(t_map *map, int *nb_c, int *nb_e, int *nb_p)
 
 void	ft_test_elements(t_map *map)
 {
-	int nb_c;
 	int nb_e;
 	int	nb_p;
 
-	nb_c = 0;
 	nb_e = 0;
 	nb_p = 0;
-	ft_count_elements(map, &nb_c, &nb_e, &nb_p);
+	map->nb_c = 0;
+	ft_count_elements(map, &nb_e, &nb_p);
 	if (nb_p != 1 || nb_e != 1 || !ft_test_forbidden_elements(map))
 	{
 		ft_free_map(map);
-		printf("invalid map");
+		printf("invalid map\n");
 		exit(EXIT_FAILURE);
 	}
 	if (!ft_test_forbidden_elements(map))
 	{
 		ft_free_map(map);
-		printf("invalid map");
+		printf("invalid map\n");
 		exit(EXIT_FAILURE);
 	}
 }
