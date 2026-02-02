@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anis <anis@student.42.fr>                  +#+  +:+       +#+         #
+#    By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/27 14:17:07 by adjelili          #+#    #+#              #
-#    Updated: 2026/01/30 13:51:05 by anis             ###   ########.fr        #
+#    Updated: 2026/02/02 14:39:48 by adjelili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,23 +17,23 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
 GET_NEXT_LINE_PATH = get_next_line
 SRC = main.c \
-      main2.c \
-	  map.c \
+      parse2.c \
+	  parse3.c \
 	  utils.c \
 	  parse.c \
 	  $(GET_NEXT_LINE_PATH)/get_next_line.c \
 	  $(GET_NEXT_LINE_PATH)/get_next_line_utils.c \
-	  paths.c
+	  init_data.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -g $(CFLAGS) $(OBJ) -I$(GET_NEXT_LINE_PATH) -o $(NAME)
+	$(CC) -g $(CFLAGS) $(OBJ) -L$(MINI_LIB_PATH) -lmlx -lXext -lX11 -lz -lm -I$(GET_NEXT_LINE_PATH) -o $(NAME)
 #	$(CC) $(CFLAGS) $(OBJ) -L$(MINI_LIB_PATH) -lmlx -lXext -lX11 -lz -lm -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Iget_next_line -c $< -o $@	
+	$(CC) $(CFLAGS) -Iminilibx_linux -O3 -Iget_next_line -c $< -o $@	
 #	$(CC) $(CFLAGS) -Iminilibx_linux -O3 -c $< -o $@
 clean:
 	rm -f $(OBJ)

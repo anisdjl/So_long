@@ -8,3 +8,15 @@ mlx_init permet d'avoir l'accees a l'ecran
 mlx_new_image permet d'avoir une image dans la ram
 mlx_get_data_addr permet d'avoir l'addresse de cette image
 mlx_new_window permet d'avoir une fenetre
+0xc4fcd90
+0xc53d4b0
+0xc53d5a0
+0xc53d690
+0xc53d780
+0xc53d870
+0xc53d960
+0xc53de50
+0xc53df40
+0xc53e030
+0xc53e120
+0xc53e210

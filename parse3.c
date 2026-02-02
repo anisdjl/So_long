@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paths.c                                            :+:      :+:    :+:   */
+/*   parse3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:14:22 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/31 17:49:52 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/02 11:10:19 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	parse(t_map *map, char *filename)
+{
+	char	**map_2;
+
+	check_file_name(filename, map);
+	ft_check_map(map, filename);
+	ft_parse_map(map, filename);
+	ft_remove_nl(map);
+	ft_test_length_line(map);
+	ft_test_walls(map);
+	ft_test_elements(map);
+	map_2 = copy_map(map);
+	find_pos_of_spawn_exit(map);
+	flood_fill(map->spawn_x, map->spawn_y, map_2);
+	ft_check_valid_path(map, map_2);
+	ft_free_tab(&map_2);
+}
 
 char	**copy_map(t_map *map)
 {
