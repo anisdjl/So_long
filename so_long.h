@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/02 15:16:25 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:47:16 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ typedef struct master_struct
 	int	frame;
 }	t_master;
 
+typedef struct hook // celle la je l'utilise que pour les hooks
+{
+	t_master	*master;
+	t_map		*map;
+}	t_hook;
+
 void	ft_free_tab(char ***tab);
 size_t	ft_strlen_map(const char *s);
 void	ft_free_map(t_map *map);
@@ -94,5 +100,7 @@ void	init_data(t_master *master, t_map *map);
 void	init_img(t_master *master, t_map *map);
 t_img	get_addr_img(t_master *master, t_map *map, char *filename);
 void	draw_map(t_master *master, t_map *map);
+void	ft_mouvements(int touche, t_hook *hook);
+int	keyboard(int touche, t_hook *hook);
 
 #endif
