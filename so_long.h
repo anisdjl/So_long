@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/03 14:47:16 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:08:02 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ typedef struct master_struct
 {
 	void	*mlx; // pour le mlx_init()
 	void	*window; // pour la fenetre
-	t_sprites	sprites; // toutes les images
+	t_sprites	*sprites; // toutes les images
 	int	player_position_x;
 	int	player_position_y;
 	int	steps; // le nombre de pas
 	int	frame;
+	int	walk;
 }	t_master;
 
 typedef struct hook // celle la je l'utilise que pour les hooks
@@ -100,7 +101,13 @@ void	init_data(t_master *master, t_map *map);
 void	init_img(t_master *master, t_map *map);
 t_img	get_addr_img(t_master *master, t_map *map, char *filename);
 void	draw_map(t_master *master, t_map *map);
-void	ft_mouvements(int touche, t_hook *hook);
-int	keyboard(int touche, t_hook *hook);
+void	up(t_hook *hook);
+void	down(t_hook *hook);
+void	right(t_hook *hook);
+void	left(t_hook *hook);
+int		keyboard(int touche, t_hook *hook);
+char	*ft_itoa(int n);
+int		ft_exit(t_hook *hook);
+void	ft_destroy_img(t_master *master);
 
 #endif

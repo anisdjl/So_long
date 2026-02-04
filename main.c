@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/03 17:21:36 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:02:24 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ int	main(int argc, char **argv)
 		//ft_free_master(master);
 		return (0);
 	}
+	master->sprites = malloc(sizeof(t_sprites));
 	map->x = 0;
 	map->y = 0;
 	map->map = NULL;
 	parse(map, argv[argc - 1]);
 	master->mlx = mlx_init();
 	master->window = mlx_new_window(master->mlx, map->y * 64, map->x * 64, "so_long");
-	// printf("%d      %d\n", map->exit_x, map->exit_y);
-	// printf("%d      %d\n", map->spawn_x, map->spawn_y);
 	init_data(master, map);
 	mlx_loop(master->mlx);
 	free(master);
