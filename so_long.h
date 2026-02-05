@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/04 17:08:02 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:26:44 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,21 @@
 # include <unistd.h>
 # include <stdint.h>
 
-typedef	struct images
-{
-	void	*ptr_img; // le pointeur vers l'image
-	int		longeur;
-	int		largeur;
-}	t_img;
-
 typedef struct sprites_for_the_game
 {
-	t_img	murs;
-	t_img	sols;
-	t_img	e_f; // sortie fermee
-	t_img	e_o; // sortie ouverte
-	t_img	gemme;
-	t_img	face; // face
-	t_img	dos; // dos
-	t_img	droite; // de cote droit
-	t_img	gauche; // de cote gauche
-	t_img	marche_d; // marche vers la droite
-	t_img	marche_g; // marche vers la gauche
-	t_img	ennemi;
+	void	*murs;
+	void	*sols;
+	void	*e_f; // sortie fermee
+	void	*e_o; // sortie ouverte
+	void	*gemme;
+	void	*face; // face
+	void	*dos; // dos
+	void	*droite; // de cote droit
+	void	*gauche; // de cote gauche
+	void	*marche_d; // marche vers la droite
+	void	*marche_g; // marche vers la gauche
+	void	*ennemi;
+	void	*enemy2;
 }	t_sprites;
 
 typedef struct map
@@ -63,8 +57,8 @@ typedef struct master_struct
 	void	*mlx; // pour le mlx_init()
 	void	*window; // pour la fenetre
 	t_sprites	*sprites; // toutes les images
-	int	player_position_x;
-	int	player_position_y;
+	int	opps_pos_x;
+	int	opps_pos_y;
 	int	steps; // le nombre de pas
 	int	frame;
 	int	walk;
@@ -99,7 +93,7 @@ void	check_file_name(char *argv, t_map *map);
 void	parse(t_map *map, char *filename);
 void	init_data(t_master *master, t_map *map);
 void	init_img(t_master *master, t_map *map);
-t_img	get_addr_img(t_master *master, t_map *map, char *filename);
+void	*get_addr_img(t_master *master, t_map *map, char *filename);
 void	draw_map(t_master *master, t_map *map);
 void	up(t_hook *hook);
 void	down(t_hook *hook);

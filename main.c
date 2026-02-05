@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/04 17:02:24 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:04:06 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	map = malloc(sizeof(t_map));
 	if (!map)
 	{
-		//ft_free_master(master);
+		free(master);
 		return (0);
 	}
 	master->sprites = malloc(sizeof(t_sprites));
