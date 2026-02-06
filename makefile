@@ -6,7 +6,7 @@
 #    By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/27 14:17:07 by adjelili          #+#    #+#              #
-#    Updated: 2026/02/04 12:15:23 by adjelili         ###   ########.fr        #
+#    Updated: 2026/02/06 16:17:54 by adjelili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRC = main.c \
 	  $(GET_NEXT_LINE_PATH)/get_next_line.c \
 	  $(GET_NEXT_LINE_PATH)/get_next_line_utils.c \
 	  init_data.c \
-	  itoa.c
+	  itoa.c \
+	  images.c \
+	  player_move.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
