@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:14:22 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/02 11:10:19 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 20:38:24 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	**copy_map(t_map *map)
 
 void	flood_fill(int pos_p_x, int pos_p_y, char **map)
 {
-	if (pos_p_x < 1 || pos_p_y < 1 || map[pos_p_x][pos_p_y] == '1' || map[pos_p_x][pos_p_y] == 'F')
+	if (pos_p_x < 1 || pos_p_y < 1 || map[pos_p_x][pos_p_y]
+		== '1' || map[pos_p_x][pos_p_y] == 'F' || map[pos_p_x][pos_p_y] == 'D')
 		return ;
 	map[pos_p_x][pos_p_y] = 'F';
 	flood_fill(pos_p_x + 1, pos_p_y, map);
@@ -86,8 +87,8 @@ void	find_pos_of_spawn_exit(t_map *map)
 
 void	ft_check_valid_path(t_map *map, char **map_filled)
 {
-	int y;
-	int a;
+	int	y;
+	int	a;
 
 	y = 0;
 	while (map_filled[y])
@@ -95,11 +96,12 @@ void	ft_check_valid_path(t_map *map, char **map_filled)
 		a = 0;
 		while (map_filled[y][a])
 		{
-			if (map_filled[y][a] == 'P' || map_filled[y][a] == 'E' || map_filled[y][a] == 'C')
+			if (map_filled[y][a] == 'P' || map_filled[y][a] == 'E'
+				|| map_filled[y][a] == 'C')
 			{
 				ft_free_map(map);
 				ft_free_tab(&map_filled);
-				printf("invalid map\n");
+				printf("invalid map valid path\n");
 				exit(EXIT_FAILURE);
 			}
 			a++;

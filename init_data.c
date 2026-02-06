@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:52:42 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 16:16:56 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 21:27:51 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,15 @@ int	keyboard(int touche, t_hook *hook)
 	return (0);
 }
 
-int	ft_exit(t_hook *hook)
-{
-	ft_destroy_img(hook->master);
-	mlx_destroy_window(hook->master->mlx, hook->master->window);
-	mlx_destroy_display(hook->master->mlx);
-	free(hook->master->sprites);
-	free(hook->master);
-	ft_free_map(hook->map);
-	free(hook);
-	exit(EXIT_SUCCESS);
-}
-
 void	init_data(t_master *master, t_map *map)
 {
 	t_hook	*hook;
-	int i;
+	int		i;
 
 	i = 0;
 	hook = malloc(sizeof(*hook));
 	hook->master = master;
 	hook->map = map;
-	hook->master->steps = 0;
-	hook->master->frame = 1;
-	hook->master->walk = 0;
-	hook->map->side = 0;
 	nb_enemy(map);
 	master->enemy = init_ennemis(hook);
 	init_img(master, map);
@@ -71,28 +55,27 @@ void	init_data(t_master *master, t_map *map)
 	mlx_hook(master->window, 17, 0, ft_exit, hook);
 }
 
-int	enemy(t_hook *hook)
-{
-	ft_move_ennemis(hook);
-	return (0);
-}
-
 void	ft_move_ennemis(t_hook *hook)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < hook->map->nb_enemy)
 	{
 		if (hook->map->map[hook->master->enemy[y]->pos_e_x]
-				[hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] == '0')
+			[hook->master->enemy[y]->pos_e_y
+				+ hook->master->enemy[y]->dir] == '0')
 		{
-			hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y] = '0';
-			hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] = 'D';
-			hook->master->enemy[y]->pos_e_y = hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir;
+			hook->map->map[hook->master->enemy[y]->pos_e_x]
+			[hook->master->enemy[y]->pos_e_y] = '0';
+			hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy
+			[y]->pos_e_y + hook->master->enemy[y]->dir] = 'D';
+			hook->master->enemy[y]->pos_e_y = hook->master->enemy[y]->pos_e_y
+				+ hook->master->enemy[y]->dir;
 			draw_map(hook->master, hook->map);
 		}
-		else if (hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] == 'P')
+		else if (hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master
+			->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] == 'P')
 			ft_exit(hook);
 		else
 			hook->master->enemy[y]->dir = -hook->master->enemy[y]->dir;
@@ -102,16 +85,15 @@ void	ft_move_ennemis(t_hook *hook)
 
 t_enemy	**init_ennemis(t_hook *hook)
 {
-	int y;
-	int a;
-	int i;
+	int		y;
+	int		a;
 	t_enemy	**ennemis;
 
-	i = 0;
+	hook->count = 0;
 	y = 0;
-	ennemis = malloc(sizeof(t_enemy*) * (hook->map->nb_enemy));
+	ennemis = malloc(sizeof(t_enemy *) * (hook->map->nb_enemy));
 	if (!ennemis)
-		ft_exit(hook); 
+		ft_exit(hook);
 	while (hook->map->map[y])
 	{
 		a = 0;
@@ -119,11 +101,9 @@ t_enemy	**init_ennemis(t_hook *hook)
 		{
 			if (hook->map->map[y][a] == 'D')
 			{
-				ennemis[i] = malloc(sizeof(t_enemy));
-				ennemis[i]->pos_e_x = y;
-				ennemis[i]->pos_e_y = a;
-				ennemis[i]->dir = 1;
-				i++;
+				ennemis[hook->count] = create_struct_ennemis
+					(hook, y, a, ennemis);
+				hook->count++;
 			}
 			a++;
 		}
@@ -132,95 +112,15 @@ t_enemy	**init_ennemis(t_hook *hook)
 	return (ennemis);
 }
 
-int		animation(t_hook *hook)
+t_enemy	*create_struct_ennemis(t_hook *hook, int y, int a, t_enemy **ennemis)
 {
-	static int y;
-	int a;
-	int b;
+	t_enemy	*ennemi;
 
-	y++;
-	if (y < 30000)
-		return (0);
-	y = 0;
-	enemy(hook);
-	hook->map->side = !hook->map->side;
-	a = 0;
-	while (hook->map->map[a])
-	{
-		b = 0;
-		while (hook->map->map[a][b])
-		{
-			if (hook->map->map[a][b] == 'C' && hook->map->side == 0)
-				mlx_put_image_to_window(hook->master->mlx, hook->master->window, hook->master->sprites->gemme, b * 64, a * 64);
-			else if (hook->map->map[a][b] == 'C' && hook->map->side == 1)
-				mlx_put_image_to_window(hook->master->mlx, hook->master->window, hook->master->sprites->gemme_2, b * 64, a * 64);
-			b++;
-		}
-		a++;
-	}
-	return (0);
-}
-
-void	draw_map(t_master *master, t_map *map)
-{
-	int x;
-	int	y;
-	char *steps;
-	x = 0;
-	while (x < map->x)
-	{
-		y = 0;
-		while (map->map[x][y])
-		{
-			steps = ft_itoa(master->steps);
-			mlx_put_image_to_window(master->mlx, master->window, master->sprites->sols, y * 64, x * 64); 
-			if (map->map[x][y] == '1')
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->murs, y * 64, x * 64);
-			else if (map->map[x][y] == 'E' && map->nb_c != 0)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->e_f, y * 64, x * 64);
-			else if (map->map[x][y] == 'E' && map->nb_c == 0)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->e_o, y * 64, x * 64);
-			else if (map->map[x][y] == 'C')
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->gemme, y * 64, x * 64);
-			else if (map->map[x][y] == 'P' && master->frame == 1)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->face, y * 64, x * 64);
-			else if (map->map[x][y] == 'P' && master->frame == 2)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->dos, y * 64, x * 64);
-			else if (map->map[x][y] == 'P' && master->frame == 3 && master->walk == 0)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->droite, y * 64, x * 64);
-			else if (map->map[x][y] == 'P' && master->frame == 3 && master->walk == 1)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->marche_d, y * 64, x * 64);
-			else if (map->map[x][y] == 'P' && master->frame == 4 && master->walk == 0)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->gauche, y * 64, x * 64);
-			else if (map->map[x][y] == 'P' && master->frame == 4 && master->walk == 1)
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->marche_g, y * 64, x * 64);
-			else if (map->map[x][y] == 'D')
-				mlx_put_image_to_window(master->mlx, master->window, master->sprites->ennemi, y * 64, x * 64);
-			mlx_string_put(master->mlx, master->window, 1 * 32, 1 * 32, 0xFFFFFF, steps);
-			free(steps);
-			y++;
-		}
-		x++;
-	}
-}
-
-
-void	nb_enemy(t_map *map)
-{
-	int y;
-	int a;
-
-	map->nb_enemy = 0;
-	y = 0;
-	while (map->map[y])
-	{
-		a = 0;
-		while (map->map[y][a])
-		{
-			if (map->map[y][a] == 'D')
-				map->nb_enemy++;
-			a++;
-		}
-		y++;
-	}
+	ennemi = malloc(sizeof(t_enemy));
+	if (!ennemi)
+		ft_free_error_malloc_ennemis(hook, ennemis);
+	ennemi->pos_e_x = y;
+	ennemi->pos_e_y = a;
+	ennemi->dir = 1;
+	return (ennemi);
 }

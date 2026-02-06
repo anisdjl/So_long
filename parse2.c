@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:06:09 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/03 16:09:18 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 20:33:39 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int	top_down_walls(t_map *map)
 	{
 		if (map->map[map->x - 1][a] != '1')
 			return (0);
-		a++;		
+		a++;
 	}
 	return (1);
 }
 
 int	side_walls(t_map *map)
 {
-	int y;
+	int	y;
 
 	y = 0;
-	while(map->map[y])
+	while (map->map[y])
 	{
 		if (map->map[y][0] != '1' || map->map[y][map->y - 1] != '1')
 			return (0);
@@ -72,7 +72,7 @@ void	ft_count_elements(t_map *map, int *nb_e, int *nb_p)
 
 void	ft_test_elements(t_map *map)
 {
-	int nb_e;
+	int	nb_e;
 	int	nb_p;
 
 	nb_e = 0;
@@ -82,13 +82,7 @@ void	ft_test_elements(t_map *map)
 	if (nb_p != 1 || nb_e != 1 || !ft_test_forbidden_elements(map))
 	{
 		ft_free_map(map);
-		printf("invalid map\n");
-		exit(EXIT_FAILURE);
-	}
-	if (!ft_test_forbidden_elements(map))
-	{
-		ft_free_map(map);
-		printf("invalid map\n");
+		printf("invalid map pas le bon nb d'entree de sortie ou de test forbidden \n");
 		exit(EXIT_FAILURE);
 	}
 }

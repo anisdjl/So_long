@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:23:21 by adjelili          #+#    #+#             */
-/*   Updated: 2026/01/29 15:07:40 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 19:30:19 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,24 @@ void	ft_free_map(t_map *map)
 	if (map->map != NULL)
 		ft_free_tab(&map->map);
 	free(map);
+}
+
+void	nb_enemy(t_map *map)
+{
+	int	y;
+	int	a;
+
+	map->nb_enemy = 0;
+	y = 0;
+	while (map->map[y])
+	{
+		a = 0;
+		while (map->map[y][a])
+		{
+			if (map->map[y][a] == 'D')
+				map->nb_enemy++;
+			a++;
+		}
+		y++;
+	}
 }

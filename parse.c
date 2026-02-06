@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 14:24:29 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/02 11:06:04 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 20:47:16 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_test_length_line(t_map *map)
 {
 	size_t	length;
-	int y;
-	
+	int		y;
+
 	length = ft_strlen(map->map[0]);
 	y = 0;
 	while (map->map[y])
@@ -33,16 +33,16 @@ void	ft_test_length_line(t_map *map)
 	if (map->x == map->y)
 	{
 		ft_free_map(map);
-		printf("invalid map\n");
+		printf("invalid map test length\n");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void	ft_check_map(t_map *map, char *filename)
 {
-	int fd;
+	int		fd;
 	char	*tmp;
-	
+
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
@@ -96,8 +96,8 @@ void	ft_parse_map(t_map *map, char *filename)
 
 void	ft_remove_nl(t_map *map)
 {
-	int y;
-	int a;
+	int	y;
+	int	a;
 
 	y = 0;
 	while (map->map[y])
@@ -118,13 +118,13 @@ void	ft_test_walls(t_map *map)
 	if (!top_down_walls(map))
 	{
 		ft_free_map(map);
-		printf("invalid map\n");
+		printf("invalid map down walls\n");
 		exit(EXIT_FAILURE);
 	}
 	if (!side_walls(map))
 	{
 		ft_free_map(map);
-		printf("invalid map\n");
+		printf("invalid map side walls\n");
 		exit(EXIT_FAILURE);
 	}
 }

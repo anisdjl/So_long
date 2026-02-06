@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 15:07:31 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 21:25:57 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,30 @@ typedef struct sprites_for_the_game
 {
 	void	*murs;
 	void	*sols;
-	void	*e_f; // sortie fermee
-	void	*e_o; // sortie ouverte
+	void	*e_f;
+	void	*e_o;
 	void	*gemme;
 	void	*gemme_2;
-	void	*face; // face
-	void	*dos; // dos
-	void	*droite; // de cote droit
-	void	*gauche; // de cote gauche
-	void	*marche_d; // marche vers la droite
-	void	*marche_g; // marche vers la gauche
+	void	*face;
+	void	*dos;
+	void	*droite;
+	void	*gauche;
+	void	*marche_d;
+	void	*marche_g;
 	void	*ennemi;
 	void	*enemy2;
 }	t_sprites;
 
 typedef struct map
 {
-	int		x; // nb of lines (la largeur de la map)
-	int		y; // nb of columns (la longeur de la map)
+	int		x;
+	int		y;
 	char	**map;
 	int		spawn_x;
 	int		spawn_y;
 	int		exit_x;
 	int		exit_y;
-	int		nb_c; // nombre de collectible
+	int		nb_c;
 	int		side;
 	int		nb_enemy;
 }	t_map;
@@ -60,25 +60,27 @@ typedef	struct enemy
 	int pos_e_x;
 	int pos_e_y;
 	int	dir;
+	int	count;
 }	t_enemy;
 
 typedef struct master_struct
 {
-	void	*mlx; // pour le mlx_init()
-	void	*window; // pour la fenetre
-	t_sprites	*sprites; // toutes les images
-	int	opps_pos_x;
-	int	opps_pos_y;
-	int	steps; // le nombre de pas
-	int	frame;
-	int	walk;
-	t_enemy **enemy;
+	void		*mlx;
+	void		*window;
+	t_sprites	*sprites;
+	int			opps_pos_x;
+	int			opps_pos_y;
+	int			steps;
+	int			frame;
+	int			walk;
+	t_enemy		**enemy;
 }	t_master;
 
-typedef struct hook // celle la je l'utilise que pour les hooks
+typedef struct hook
 {
 	t_master	*master;
 	t_map		*map;
+	int			count;
 }	t_hook;
 
 void	ft_free_tab(char ***tab);
@@ -118,6 +120,12 @@ int		animation(t_hook *hook);
 void	nb_enemy(t_map *map);
 t_enemy	**init_ennemis(t_hook *hook);
 void	ft_move_ennemis(t_hook *hook);
-int	enemy(t_hook *hook);
+void	draw_map2(t_master *master, t_map *map, int x, int y);
+void	draw_map3(t_master *master, t_map *map, int x, int y);
+void	display_annim(t_hook *hook, int a, int b);
+void	init(t_map *map, char *argv);
+t_enemy	*create_struct_ennemis(t_hook *hook, int y, int a, t_enemy **ennemis);
+void	ft_free_ennemis(t_hook *hook);
+void	ft_free_error_malloc_ennemis(t_hook *hook, t_enemy **ennemis);
 
 #endif
