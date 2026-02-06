@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:52:42 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/05 12:57:11 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 16:02:47 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	keyboard(int touche, t_hook *hook)
 	}
 	else if (touche == 65307)
 		ft_exit(hook);
-	if ((hook->map->nb_c == 0 && hook->map->spawn_x == hook->map->exit_x && hook->map->spawn_y == hook->map->exit_y))
+	if ((hook->map->nb_c == 0 && hook->map->spawn_x == hook->map->exit_x
+			&& hook->map->spawn_y == hook->map->exit_y))
 		ft_exit(hook);
 	draw_map(hook->master, hook->map);
 	return (0);
@@ -73,7 +74,8 @@ void	up(t_hook *hook)
 		if (hook->map->map[hook->map->spawn_x - 1][hook->map->spawn_y] == 'C')
 			hook->map->nb_c--;
 		hook->map->map[hook->map->spawn_x - 1][hook->map->spawn_y] = 'P';
-		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y != hook->map->exit_y)
+		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y
+				!= hook->map->exit_y)
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = '0';
 		else
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = 'E';
@@ -91,7 +93,8 @@ void	down(t_hook *hook)
 		if (hook->map->map[hook->map->spawn_x + 1][hook->map->spawn_y] == 'C')
 			hook->map->nb_c--;
 		hook->map->map[hook->map->spawn_x + 1][hook->map->spawn_y] = 'P';
-		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y != hook->map->exit_y)
+		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y
+				!= hook->map->exit_y)
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = '0';
 		else
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = 'E';
@@ -109,7 +112,8 @@ void	right(t_hook *hook)
 		if (hook->map->map[hook->map->spawn_x][hook->map->spawn_y + 1] == 'C')
 			hook->map->nb_c--;
 		hook->map->map[hook->map->spawn_x][hook->map->spawn_y + 1] = 'P';
-		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y != hook->map->exit_y)
+		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y
+				!= hook->map->exit_y)
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = '0';
 		else
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = 'E';
@@ -121,13 +125,14 @@ void	right(t_hook *hook)
 void	left(t_hook *hook)
 {
 	if (hook->map->map[hook->map->spawn_x][hook->map->spawn_y - 1] != '1'
-		&& hook->map->map[hook->map->spawn_x][hook->map->spawn_y - 1] !=  'D') // vers la gauche
+		&& hook->map->map[hook->map->spawn_x][hook->map->spawn_y - 1] !=  'D')
 	{
 		hook->master->frame = 4;
 		if (hook->map->map[hook->map->spawn_x][hook->map->spawn_y - 1] == 'C')
 			hook->map->nb_c--;
 		hook->map->map[hook->map->spawn_x][hook->map->spawn_y - 1] = 'P';
-		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y != hook->map->exit_y)
+		if (hook->map->spawn_x != hook->map->exit_x || hook->map->spawn_y
+				!= hook->map->exit_y)
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = '0';
 		else
 			hook->map->map[hook->map->spawn_x][hook->map->spawn_y] = 'E';
@@ -139,27 +144,119 @@ void	left(t_hook *hook)
 void	init_data(t_master *master, t_map *map)
 {
 	t_hook	*hook;
+	int i;
 
+	i = 0;
 	hook = malloc(sizeof(*hook));
 	hook->master = master;
 	hook->map = map;
 	hook->master->steps = 0;
 	hook->master->frame = 1;
 	hook->master->walk = 0;
+	hook->map->side = 0;
+	nb_enemy(map);
+	master->enemy = init_ennemis(hook);
 	init_img(master, map);
 	draw_map(master, map);
+	mlx_loop_hook(master->mlx, animation, hook);
 	mlx_hook(master->window, 2, 3, keyboard, hook); // cette fonction gere les hooks (les hooks c'est des crochets qui ont une fonction a appeler en cas de touche presse)
 	mlx_hook(master->window, 17, 0, ft_exit, hook);
-//	mlx_loop_hook(master->mlx, enemy, hook);
-	// if (map->nb_c == 0)
-		// on change l'image de l'exit
-	//free(hook); faut pas mettre de free ici
 }
 
-void	init_img(t_master *master, t_map *map) // pour avoir l'addresse de chaque image 
+int	enemy(t_hook *hook)
+{
+	ft_move_ennemis(hook);
+	return (0);
+}
+
+void	ft_move_ennemis(t_hook *hook)
+{
+	int y;
+
+	y = 0;
+	while (y < hook->map->nb_enemy)
+	{
+		if (hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] == '0')
+		{
+			hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y] = '0';
+			hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] = 'D';
+			hook->master->enemy[y]->pos_e_y = hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir;
+			draw_map(hook->master, hook->map);
+		}
+		else if (hook->map->map[hook->master->enemy[y]->pos_e_x][hook->master->enemy[y]->pos_e_y + hook->master->enemy[y]->dir] == 'P')
+			ft_exit(hook);
+		else
+			hook->master->enemy[y]->dir = -hook->master->enemy[y]->dir;
+		y++;
+	}
+}
+
+t_enemy	**init_ennemis(t_hook *hook)
+{
+	int y;
+	int a;
+	int i;
+	t_enemy	**ennemis;
+
+	i = 0;
+	y = 0;
+	ennemis = malloc(sizeof(t_enemy*) * (hook->map->nb_enemy));
+	if (!ennemis)
+		ft_exit(hook); 
+	while (hook->map->map[y])
+	{
+		a = 0;
+		while (hook->map->map[y][a])
+		{
+			if (hook->map->map[y][a] == 'D')
+			{
+				ennemis[i] = malloc(sizeof(t_enemy));
+				ennemis[i]->pos_e_x = y;
+				ennemis[i]->pos_e_y = a;
+				ennemis[i]->dir = 1;
+				i++;
+			}
+			a++;
+		}
+		y++;
+	}
+	return (ennemis);
+}
+
+int		animation(t_hook *hook)
+{
+	static int y;
+	int a;
+	int b;
+
+	y++;
+	if (y < 30000)
+		return (0);
+	y = 0;
+	enemy(hook);
+	hook->map->side = !hook->map->side;
+	a = 0;
+	while (hook->map->map[a])
+	{
+		b = 0;
+		while (hook->map->map[a][b])
+		{
+			if (hook->map->map[a][b] == 'C' && hook->map->side == 0)
+				mlx_put_image_to_window(hook->master->mlx, hook->master->window, hook->master->sprites->gemme, b * 64, a * 64);
+			else if (hook->map->map[a][b] == 'C' && hook->map->side == 1)
+				mlx_put_image_to_window(hook->master->mlx, hook->master->window, hook->master->sprites->gemme_2, b * 64, a * 64);
+			b++;
+		}
+		a++;
+	}
+	return (0);
+}
+
+void	init_img(t_master *master, t_map *map) 
 {
 	master->sprites->gemme = get_addr_img(master, map, "images/collectible.xpm");
 	master->sprites->dos = get_addr_img(master, map, "images/de_dos.xpm");
+	master->sprites->gemme_2 = get_addr_img(master, map, "images/collectible_2.xpm");
 	master->sprites->ennemi = get_addr_img(master, map, "images/enemy.xpm");
 	master->sprites->e_f = get_addr_img(master, map, "images/exit_closed.xpm");
 	master->sprites->e_o = get_addr_img(master, map, "images/exit_opened.xpm");
@@ -229,5 +326,26 @@ void	draw_map(t_master *master, t_map *map)
 			y++;
 		}
 		x++;
+	}
+}
+
+
+void	nb_enemy(t_map *map)
+{
+	int y;
+	int a;
+
+	map->nb_enemy = 0;
+	y = 0;
+	while (map->map[y])
+	{
+		a = 0;
+		while (map->map[y][a])
+		{
+			if (map->map[y][a] == 'D')
+				map->nb_enemy++;
+			a++;
+		}
+		y++;
 	}
 }

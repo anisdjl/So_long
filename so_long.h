@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/05 10:26:44 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:07:31 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct sprites_for_the_game
 	void	*e_f; // sortie fermee
 	void	*e_o; // sortie ouverte
 	void	*gemme;
+	void	*gemme_2;
 	void	*face; // face
 	void	*dos; // dos
 	void	*droite; // de cote droit
@@ -50,7 +51,16 @@ typedef struct map
 	int		exit_x;
 	int		exit_y;
 	int		nb_c; // nombre de collectible
+	int		side;
+	int		nb_enemy;
 }	t_map;
+
+typedef	struct enemy
+{
+	int pos_e_x;
+	int pos_e_y;
+	int	dir;
+}	t_enemy;
 
 typedef struct master_struct
 {
@@ -62,6 +72,7 @@ typedef struct master_struct
 	int	steps; // le nombre de pas
 	int	frame;
 	int	walk;
+	t_enemy **enemy;
 }	t_master;
 
 typedef struct hook // celle la je l'utilise que pour les hooks
@@ -103,5 +114,10 @@ int		keyboard(int touche, t_hook *hook);
 char	*ft_itoa(int n);
 int		ft_exit(t_hook *hook);
 void	ft_destroy_img(t_master *master);
+int		animation(t_hook *hook);
+void	nb_enemy(t_map *map);
+t_enemy	**init_ennemis(t_hook *hook);
+void	ft_move_ennemis(t_hook *hook);
+int	enemy(t_hook *hook);
 
 #endif
