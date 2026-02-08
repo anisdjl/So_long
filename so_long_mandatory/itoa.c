@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   itoa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:13:49 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/04 12:14:16 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:03:04 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static void	*ft_create_string(char *str, int nbchar, long nb)
 {

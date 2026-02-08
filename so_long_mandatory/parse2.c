@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:06:09 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 20:33:39 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:03:16 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	top_down_walls(t_map *map)
 {

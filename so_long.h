@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 21:25:57 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:17:21 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include "minilibx_linux/mlx.h"
+//# include "minilibx_linux/mlx.h"
 # include "get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdint.h>
+# include "printf.h"
 
 typedef struct sprites_for_the_game
 {

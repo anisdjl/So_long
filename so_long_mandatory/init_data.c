@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:52:42 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 21:27:51 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:10:18 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	keyboard(int touche, t_hook *hook)
 {
@@ -34,6 +34,7 @@ int	keyboard(int touche, t_hook *hook)
 			&& hook->map->spawn_y == hook->map->exit_y))
 		ft_exit(hook);
 	draw_map(hook->master, hook->map);
+	ft_printf("%d\n", hook->master->steps);
 	return (0);
 }
 
@@ -50,7 +51,7 @@ void	init_data(t_master *master, t_map *map)
 	master->enemy = init_ennemis(hook);
 	init_img(master, map);
 	draw_map(master, map);
-	mlx_loop_hook(master->mlx, animation, hook);
+	//mlx_loop_hook(master->mlx, animation, hook);
 	mlx_hook(master->window, 2, 3, keyboard, hook);
 	mlx_hook(master->window, 17, 0, ft_exit, hook);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_annim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:03:02 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 19:29:18 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:02:23 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	animation(t_hook *hook)
 {

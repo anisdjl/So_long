@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:08:46 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/06 17:59:14 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/08 19:08:55 by anis             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	init_img(t_master *master, t_map *map)
 {
@@ -67,8 +67,8 @@ void	draw_map(t_master *master, t_map *map)
 					master->sprites->murs, y * 64, x * 64);
 			else
 				draw_map2(master, map, x, y);
-			mlx_string_put(master->mlx, master->window, 1 * 32,
-				1 * 32, 0xFFFFFF, steps);
+			//mlx_string_put(master->mlx, master->window, 1 * 32,
+				//1 * 32, 0xFFFFFF, steps);
 			free(steps);
 			y++;
 		}
