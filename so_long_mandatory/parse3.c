@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:14:22 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:03:21 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 11:39:41 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_check_valid_path(t_map *map, char **map_filled)
 			{
 				ft_free_map(map);
 				ft_free_tab(&map_filled);
-				printf("invalid map valid path\n");
+				ft_printf("Error\n no such valid path\n");
 				exit(EXIT_FAILURE);
 			}
 			a++;

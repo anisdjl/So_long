@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:03:08 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 11:47:33 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,24 @@ void	init(t_map *map, char *argv)
 		free(map);
 		exit(EXIT_FAILURE);
 	}
-		master->sprites = malloc(sizeof(t_sprites));
+	master->sprites = malloc(sizeof(t_sprites));
 	if (!master->sprites)
 	{
 		free(map);
 		free(master);
 		return ;
 	}
+	init_master(master, map);
+	init_data(master, map);
+	mlx_loop(master->mlx);
+}
+
+void	init_master(t_master *master, t_map *map)
+{
 	master->steps = 0;
 	master->frame = 1;
 	master->walk = 0;
 	master->mlx = mlx_init();
 	master->window = mlx_new_window(master->mlx, map->y * 64,
-		map->x * 64, "so_long");
-	init_data(master, map);
-	mlx_loop(master->mlx);
+			map->x * 64, "so_long");
 }

@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 10:17:48 by adjelili          #+#    #+#             */
-/*   Updated: 2025/11/22 15:22:12 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 10:24:29 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,3 @@ int	ft_print_str(char *str)
 	}
 	return (y);
 }
-
-/*#include <stdio.h>
-int main(void)
-{
-	char str[6] = "hello";
-
-	printf("%d\n", ft_print_str(str));
-	return (0);
-}*/

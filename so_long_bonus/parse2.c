@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:06:09 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:07:22 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 12:26:35 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ void	ft_test_elements(t_map *map)
 	nb_p = 0;
 	map->nb_c = 0;
 	ft_count_elements(map, &nb_e, &nb_p);
-	if (nb_p != 1 || nb_e != 1 || !ft_test_forbidden_elements(map))
+	if (nb_p != 1 || nb_e != 1 || !ft_test_forbidden_elements(map)
+		|| map->nb_c < 1)
 	{
 		ft_free_map(map);
-		printf("invalid map pas le bon nb d'entree de sortie ou de test forbidden \n");
+		ft_printf("Error\n wrong elements or wrong number of elements\n");
 		exit(EXIT_FAILURE);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:52:42 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:10:18 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 10:36:03 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	init_data(t_master *master, t_map *map)
 	master->enemy = init_ennemis(hook);
 	init_img(master, map);
 	draw_map(master, map);
-	//mlx_loop_hook(master->mlx, animation, hook);
 	mlx_hook(master->window, 2, 3, keyboard, hook);
 	mlx_hook(master->window, 17, 0, ft_exit, hook);
 }

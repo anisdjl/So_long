@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 14:24:29 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:07:19 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 11:48:43 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_test_length_line(t_map *map)
 		if (ft_strlen(map->map[y]) != length)
 		{
 			ft_free_map(map);
-			printf("invalid map\n");
+			ft_printf("Error\n the map must be rectengular\n");
 			exit(EXIT_FAILURE);
 		}
 		y++;
@@ -33,7 +33,7 @@ void	ft_test_length_line(t_map *map)
 	if (map->x == map->y)
 	{
 		ft_free_map(map);
-		printf("invalid map test length\n");
+		ft_printf("Error\n the map must be rectengular\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -53,7 +53,7 @@ void	ft_check_map(t_map *map, char *filename)
 	if (tmp == NULL)
 	{
 		free(map);
-		printf("empty map\n");
+		ft_printf("Error\n empty map\n");
 		exit(EXIT_FAILURE);
 	}
 	free (tmp);
@@ -75,6 +75,7 @@ void	ft_parse_map(t_map *map, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
+		ft_printf("Error\n problem while openning the file\n");
 		free(map);
 		exit(EXIT_FAILURE);
 	}
@@ -118,13 +119,13 @@ void	ft_test_walls(t_map *map)
 	if (!top_down_walls(map))
 	{
 		ft_free_map(map);
-		printf("invalid map down walls\n");
+		ft_printf("Error\n the map should be surrounded by walls\n");
 		exit(EXIT_FAILURE);
 	}
 	if (!side_walls(map))
 	{
 		ft_free_map(map);
-		printf("invalid map side walls\n");
+		ft_printf("Error\n the map should be surrounded by walls\n");
 		exit(EXIT_FAILURE);
 	}
 }

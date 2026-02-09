@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:17:21 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 12:55:32 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
+//# include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-//# include "minilibx_linux/mlx.h"
+# include "minilibx_linux/mlx.h"
 # include "get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdint.h>
-# include "printf.h"
+# include "printf/ft_printf.h"
 
 typedef struct sprites_for_the_game
 {
@@ -98,7 +98,6 @@ void	ft_test_elements(t_map *map);
 void	ft_count_elements(t_map *map, int *nb_e, int *nb_p);
 int		ft_test_forbidden_elements(t_map *map);
 char	**copy_map(t_map *map);
-void	ft_print_map_2(char **map);
 void	flood_fill(int pos_p_x, int pos_p_y, char **map);
 void	find_pos_of_spawn_exit(t_map *map);
 void	ft_check_valid_path(t_map *map, char **map_filled);
@@ -128,5 +127,9 @@ void	init(t_map *map, char *argv);
 t_enemy	*create_struct_ennemis(t_hook *hook, int y, int a, t_enemy **ennemis);
 void	ft_free_ennemis(t_hook *hook);
 void	ft_free_error_malloc_ennemis(t_hook *hook, t_enemy **ennemis);
+void	init_master(t_master *master, t_map *map);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strtrim(char const *s1, char const *set);
+void	check_file_name2(char *argv, t_map *map);
 
 #endif

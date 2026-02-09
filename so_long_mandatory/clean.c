@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anis <anis@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:50:44 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/08 19:02:58 by anis             ###   ########.fr       */
+/*   Updated: 2026/02/09 11:40:44 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	ft_exit(t_hook *hook)
 
 void	ft_free_ennemis(t_hook *hook)
 {
-	int y;
-	
+	int	y;
+
 	y = 0;
 	while (y < hook->count)
 	{
