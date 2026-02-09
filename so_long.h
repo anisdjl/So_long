@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 14:35:13 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 17:35:15 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ void	init_master(t_master *master, t_map *map);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 void	check_file_name2(char *argv, t_map *map);
+int		opti_draw(t_hook *hook);
 
 #endif

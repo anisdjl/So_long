@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:52:42 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 10:36:03 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 17:06:47 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	init_data(t_master *master, t_map *map)
 	draw_map(master, map);
 	mlx_hook(master->window, 2, 3, keyboard, hook);
 	mlx_hook(master->window, 17, 0, ft_exit, hook);
+	mlx_hook(master->window, 12, 1L << 15, opti_draw, hook);
 }
 
 void	ft_move_ennemis(t_hook *hook)

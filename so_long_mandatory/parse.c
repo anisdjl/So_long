@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 14:24:29 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 13:07:13 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 16:24:54 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ void	ft_test_length_line(t_map *map)
 		y++;
 	}
 	map->y = length;
-	if (map->x == map->y)
-	{
-		ft_free_map(map);
-		ft_printf("Error\n the map must be rectengular\n");
-		exit(EXIT_FAILURE);
-	}
 }
 
 void	ft_check_map(t_map *map, char *filename)

@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:08:46 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 11:31:16 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 17:35:39 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	draw_map(t_master *master, t_map *map)
 {
 	int		x;
 	int		y;
-	char	*steps;
 
 	x = 0;
 	while (x < map->x)
@@ -59,7 +58,6 @@ void	draw_map(t_master *master, t_map *map)
 		y = 0;
 		while (map->map[x][y])
 		{
-			steps = ft_itoa(master->steps);
 			mlx_put_image_to_window(master->mlx, master->window,
 				master->sprites->sols, y * 64, x * 64);
 			if (map->map[x][y] == '1')
@@ -67,7 +65,6 @@ void	draw_map(t_master *master, t_map *map)
 					master->sprites->murs, y * 64, x * 64);
 			else
 				draw_map2(master, map, x, y);
-			free(steps);
 			y++;
 		}
 		x++;

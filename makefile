@@ -6,7 +6,7 @@
 #    By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/27 14:17:07 by adjelili          #+#    #+#              #
-#    Updated: 2026/02/09 12:45:24 by adjelili         ###   ########.fr        #
+#    Updated: 2026/02/09 16:36:01 by adjelili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,9 @@ SRC_MANDATORY = $(MANDATORY_PATH)/main.c \
 	  $(MANDATORY_PATH)/utils.c \
 	  $(MANDATORY_PATH)/parse.c \
 	  $(MANDATORY_PATH)/init_data.c \
-	  $(MANDATORY_PATH)/itoa.c \
 	  $(MANDATORY_PATH)/images.c \
 	  $(MANDATORY_PATH)/player_move.c \
 	  $(MANDATORY_PATH)/clean.c \
-	  $(MANDATORY_PATH)/draw_annim.c \
 	  $(MANDATORY_PATH)/utils2.c \
 	  $(MANDATORY_PATH)/ft_strtrim.c
 

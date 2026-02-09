@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:14:43 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 14:34:37 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 17:09:52 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	check_file_name(char *argv, t_map *map)
 			exit(EXIT_FAILURE);
 		}
 	}
-	ft_printf("%s\n", argv);
 }
 
 void	check_file_name2(char *argv, t_map *map)
@@ -82,4 +81,10 @@ char	*ft_strrchr(const char *s, int c)
 			y--;
 	}
 	return (NULL);
+}
+
+int	opti_draw(t_hook *hook)
+{
+	draw_map(hook->master, hook->map);
+	return (0);
 }
