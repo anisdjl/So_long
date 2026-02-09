@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:14:43 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 13:01:18 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 14:34:37 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_file_name(char *argv, t_map *map)
 void	check_file_name2(char *argv, t_map *map)
 {
 	size_t	y;
-	char *argv2;
+	char	*argv2;
 
 	argv2 = ft_strtrim(ft_strrchr(argv, 47), "/");
 	y = ft_strlen_map(argv2);

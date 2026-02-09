@@ -6,14 +6,13 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 12:03:37 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 12:55:32 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/09 14:35:13 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//# include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 # include "minilibx_linux/mlx.h"
@@ -56,10 +55,10 @@ typedef struct map
 	int		nb_enemy;
 }	t_map;
 
-typedef	struct enemy
+typedef struct enemy
 {
-	int pos_e_x;
-	int pos_e_y;
+	int	pos_e_x;
+	int	pos_e_y;
 	int	dir;
 	int	count;
 }	t_enemy;
