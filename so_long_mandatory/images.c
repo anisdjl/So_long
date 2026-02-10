@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:08:46 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 17:35:39 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:55:36 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	draw_map(t_master *master, t_map *map)
 {
 	int		x;
 	int		y;
+	void	*ptr;
 
 	x = 0;
 	while (x < map->x)
@@ -58,55 +59,51 @@ void	draw_map(t_master *master, t_map *map)
 		y = 0;
 		while (map->map[x][y])
 		{
+			ptr = find_ptr(master, map, x, y);
 			mlx_put_image_to_window(master->mlx, master->window,
-				master->sprites->sols, y * 64, x * 64);
-			if (map->map[x][y] == '1')
-				mlx_put_image_to_window(master->mlx, master->window,
-					master->sprites->murs, y * 64, x * 64);
-			else
-				draw_map2(master, map, x, y);
+				ptr, y * 64, x * 64);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	draw_map2(t_master *master, t_map *map, int x, int y)
+void	*find_ptr(t_master *master, t_map *map, int x, int y)
 {
-	if (map->map[x][y] == 'E' && map->nb_c != 0)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->e_f, y * 64, x * 64);
-	else if (map->map[x][y] == 'E' && map->nb_c == 0)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->e_o, y * 64, x * 64);
-	else if (map->map[x][y] == 'C')
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->gemme, y * 64, x * 64);
-	else if (map->map[x][y] == 'P' && master->frame == 1)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->face, y * 64, x * 64);
+	if (map->map[x][y] == '1')
+		return (master->sprites->murs);
+	else if (map->map[x][y] == '0')
+		return (master->sprites->sols);
+	else if (map->map[x][y] == 'D')
+		return (master->sprites->ennemi);
 	else if (map->map[x][y] == 'P' && master->frame == 2)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->dos, y * 64, x * 64);
+		return (master->sprites->dos);
+	else if (map->map[x][y] == 'P' && master->frame == 1)
+		return (master->sprites->face);
+	else if (map->map[x][y] == 'P' && master->frame == 3
+		&& master->walk == 0)
+		return (master->sprites->droite);
+	else if (map->map[x][y] == 'P' && master->frame == 3
+		&& master->walk == 1)
+		return (master->sprites->marche_d);
+	else if (map->map[x][y] == 'P' && master->frame == 4
+		&& master->walk == 0)
+		return (master->sprites->gauche);
+	else if (map->map[x][y] == 'P' && master->frame == 4
+		&& master->walk == 1)
+		return (master->sprites->marche_g);
 	else
-		draw_map3(master, map, x, y);
+		return (find_ptr2(master, map, x, y));
 }
 
-void	draw_map3(t_master *master, t_map *map, int x, int y)
+void	*find_ptr2(t_master *master, t_map *map, int x, int y)
 {
-	if (map->map[x][y] == 'P' && master->frame == 3 && master->walk == 0)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->droite, y * 64, x * 64);
-	else if (map->map[x][y] == 'P' && master->frame == 3 && master->walk == 1)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->marche_d, y * 64, x * 64);
-	else if (map->map[x][y] == 'P' && master->frame == 4 && master->walk == 0)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->gauche, y * 64, x * 64);
-	else if (map->map[x][y] == 'P' && master->frame == 4 && master->walk == 1)
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->marche_g, y * 64, x * 64);
-	else if (map->map[x][y] == 'D')
-		mlx_put_image_to_window(master->mlx, master->window,
-			master->sprites->ennemi, y * 64, x * 64);
+	if (map->map[x][y] == 'C')
+		return (master->sprites->gemme);
+	else if (map->map[x][y] == 'E' && map->nb_c != 0)
+		return (master->sprites->e_f);
+	else if (map->map[x][y] == 'E' && map->nb_c == 0)
+		return (master->sprites->e_o);
+	else
+		return (NULL);
 }
