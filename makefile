@@ -6,7 +6,7 @@
 #    By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/27 14:17:07 by adjelili          #+#    #+#              #
-#    Updated: 2026/02/10 12:53:25 by adjelili         ###   ########.fr        #
+#    Updated: 2026/02/11 11:45:48 by adjelili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ $(BONUS_MAKER): $(OBJ_BONUS) $(MINILIBX_LIB) $(PRINTF_LIB) $(OBJ_GNL)
 	$(CC) $(CFLAGS) -c $< -o $@	
 
 clean:
+	rm -f $(BONUS_MAKER)
 	rm -f $(OBJ) $(OBJ_BONUS) $(OBJ_GNL) $(BONUS_MAKER)
 	$(MAKE) -C $(PRINTF_DIR) clean
 	$(MAKE) -C $(MINILIBX_DIR) clean	
