@@ -6,7 +6,7 @@
 /*   By: adjelili <adjelili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 16:12:57 by adjelili          #+#    #+#             */
-/*   Updated: 2026/02/09 17:35:15 by adjelili         ###   ########.fr       */
+/*   Updated: 2026/02/12 09:47:31 by adjelili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_map		*map;
 
+	if (argc != 2)
+		return (0);
 	map = malloc(sizeof(t_map));
 	if (!map)
 	{
